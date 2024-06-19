@@ -65,4 +65,11 @@ class PermissionController extends Controller
 
         $messaging->send($message);
     }
+    public function destroy($id)
+    {
+        $permission = Permission::findOrFail($id);
+        $permission->delete();
+
+        return redirect()->route('permissions.index')->with('success', 'Permission deleted successfully');
+    }
 }
