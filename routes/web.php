@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\DateController;
 
 Route::get('/', function () {
     return view('pages.auth.auth-login');
@@ -20,3 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('attendances', AttendanceController::class);
     Route::resource('permissions', PermissionController::class);
 });
+
+Route::get('/dates', [DateController::class, 'showForm'])->name('dates.form');
+Route::post('/dates', [DateController::class, 'showWeekends'])->name('dates.weekends');
+
